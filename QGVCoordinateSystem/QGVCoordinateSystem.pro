@@ -29,14 +29,16 @@ SOURCES += \
     GraphicsArrowItem.cpp \
     GraphicsScene.cpp \
     ItemPropertyController.cpp \
-    GraphicsCoordinateAxisItem.cpp
+    GraphicsCoordinateAxisItem.cpp \
+    GraphicsRectItem.cpp
 
 HEADERS += \
         MainWindow.h \
     GraphicsArrowItem.h \
     GraphicsScene.h \
     ItemPropertyController.h \
-    GraphicsCoordinateAxisItem.h
+    GraphicsCoordinateAxisItem.h \
+    GraphicsRectItem.h
 
 FORMS += \
         MainWindow.ui

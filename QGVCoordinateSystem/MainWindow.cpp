@@ -1,5 +1,6 @@
 ﻿#include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include <QSplitter>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,8 +8,19 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QSplitter *splitter = new QSplitter(this);
+          splitter->addWidget(ui->graphicsView);
+          splitter->addWidget(ui->tableWidget);
+          setCentralWidget(splitter);
+
     m_pGraphicsScene = new GraphicsScene(this);
     ui->graphicsView->setScene(m_pGraphicsScene);
+    QTransform transform;   // 左手系转右手系
+    transform.setMatrix(1, 0, 0,
+                        0, -1, 0,
+                        0, 0, 1);
+    ui->graphicsView->setTransform(transform);
+
     connect(m_pGraphicsScene, SIGNAL(cursorChanged(QPointF, QPointF, QPointF)), this, SLOT(onCursorChanged(QPointF, QPointF, QPointF)));
     m_pItemPropertyController = new ItemPropertyController(m_pGraphicsScene, ui->tableWidget, this);
 }
